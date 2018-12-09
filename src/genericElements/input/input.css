@@ -10,6 +10,12 @@
   right: 0;
 }
 
+.floating-placeholder {
+  position: absolute;
+  top:0;
+  left:7.5px;
+}
+
 .x-large-input, .large-input, .medium-input, .small-input{
   display: flex;
   justify-content: center;
@@ -18,9 +24,11 @@
   white-space: nowrap;
   overflow: hidden;
   margin: 5px;
-  padding: 17.5px 32.5px 17.5px 7.5px;
+  padding: 25.5px 32.5px 7.5px 7.5px;
   border: none;
   border-bottom: 2px solid #cccccc;
+  transition: all 0.5s;
+  opacity: 1;
 }
 
 .x-large-input {
@@ -37,4 +45,16 @@
 
 .small-input {
   min-width: 75px;
+}
+
+.x-large-input:hover, .large-input:hover, .medium-input:hover, .small-input:hover {
+  border-bottom: 2px solid #16a085;
+  opacity: 0.75;
+  transition: all 0.5s;
+}
+
+.x-large-input:focus, .large-input:focus, .medium-input:focus, .small-input:focus {
+  border-bottom: 2px solid #16a085;
+  opacity: 1;
+  transition: all 0.5s;
 }
