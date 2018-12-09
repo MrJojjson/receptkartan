@@ -1,0 +1,38 @@
+.x-large-button, .large-button, .medium-button, .small-button, .auto-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #cccccc;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-radius: 3px;
+  margin: 5px;
+  padding: 17.5px;
+}
+
+.x-large-button {
+  min-width: 200px;
+}
+
+.large-button {
+  min-width: 150px;
+}
+
+.medium-button {
+  min-width: 100px;
+}
+
+.small-button {
+  min-width: 75px;
+}
+
+.auto-button {
+  max-width: auto;
+  min-width: auto;
+}
+
+.border {
+  border: 1px solid #cccccc;
+  background: transparent;
+}

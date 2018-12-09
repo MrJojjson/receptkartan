@@ -1,5 +1,5 @@
 {
-  "name": "react-minimal-babel-eslint-webpack",
+  "name": "receptkartan",
   "version": "1.0.0",
   "description": "��#\u0000 \u0000r\u0000e\u0000a\u0000c\u0000t\u0000-\u0000m\u0000i\u0000n\u0000i\u0000m\u0000a\u0000l\u0000-\u0000b\u0000a\u0000b\u0000e\u0000l\u0000-\u0000e\u0000s\u0000l\u0000i\u0000n\u0000t\u0000-\u0000w\u0000e\u0000b\u0000p\u0000a\u0000c\u0000k\u0000\r\u0000 \u0000",
   "main": "index.js",
@@ -9,21 +9,22 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MrJojjson/react-minimal-babel-eslint-webpack.git"
+    "url": "git+https://github.com/MrJojjson/receptkartan.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/MrJojjson/react-minimal-babel-eslint-webpack/issues"
+    "url": "https://github.com/MrJojjson/receptkartan/issues"
   },
-  "homepage": "https://github.com/MrJojjson/react-minimal-babel-eslint-webpack#readme",
+  "homepage": "https://github.com/MrJojjson/receptkartan#readme",
   "devDependencies": {
     "@babel/core": "^7.1.2",
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
     "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.4",
+    "css-loader": "^1.0.1",
     "eslint": "^5.8.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-loader": "^2.1.1",
@@ -31,6 +32,7 @@
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-react": "^7.11.1",
     "react-hot-loader": "^4.3.12",
+    "style-loader": "^0.23.1",
     "webpack": "^4.24.0",
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.10"
@@ -38,6 +40,9 @@
   "dependencies": {
     "prop-types": "^15.6.2",
     "react": "^16.6.0",
-    "react-dom": "^16.6.0"
+    "react-dom": "^16.6.0",
+    "react-redux": "^5.1.0",
+    "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0"
   }
 }
