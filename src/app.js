@@ -15,7 +15,11 @@ const App = () => (
     <Text size="x-large">X-large text</Text>
     <Button size="x-large" title="Test button" border />
     <Button size="small" title="Test button without border but with ellipsis" />
-    <Input size="medium" id="test" value="Test value" placeholder="Test placeholder" />
+    <Input size="small" id="small" placeholder="Small" />
+    <Input size="medium" id="medium" placeholder="Medium" />
+    <Input size="large" id="large" placeholder="Large" />
+    <Input size="x-large" id="x-large" placeholder="X-Large" />
+
   </Container>
 );
 
