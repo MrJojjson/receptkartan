@@ -1,0 +1,40 @@
+.input-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.clear-all {
+  position: absolute;
+  right: 0;
+}
+
+.x-large-input, .large-input, .medium-input, .small-input{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  white-space: nowrap;
+  overflow: hidden;
+  margin: 5px;
+  padding: 17.5px 32.5px 17.5px 7.5px;
+  border: none;
+  border-bottom: 2px solid #cccccc;
+}
+
+.x-large-input {
+  min-width: 200px;
+}
+
+.large-input {
+  min-width: 150px;
+}
+
+.medium-input {
+  min-width: 100px;
+}
+
+.small-input {
+  min-width: 75px;
+}
