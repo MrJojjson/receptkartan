@@ -2,10 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faEraser, faChevronCircleDown } from '@fortawesome/free-solid-svg-icons';
+
 import Container from './genericElements/container';
 import Button from './genericElements/button';
 import Text from './genericElements/text';
 import Input from './genericElements/input';
+import Dropdown from './genericElements/dropdown';
+
+library.add(faEraser, faChevronCircleDown);
 
 const App = () => (
   <Container size="full">
@@ -19,6 +25,7 @@ const App = () => (
     <Input size="medium" id="medium" placeholder="Medium" />
     <Input size="large" id="large" placeholder="Large" />
     <Input size="x-large" id="x-large" placeholder="X-Large" />
+    <Dropdown size="large" id="dropdown" placeholder="Search..." />
 
   </Container>
 );

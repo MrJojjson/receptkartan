@@ -5,13 +5,13 @@ import './text.css';
 const Text = ({
   size,
   children,
-  className,
-  inactive,
+  type,
+  active,
 }) => (
   <div className={`
       ${size}-text
-      ${className}
-      ${inactive}
+      ${type}
+      ${active && 'active'}
     `}
   >
     {children}

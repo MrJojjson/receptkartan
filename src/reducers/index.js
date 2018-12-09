@@ -11,6 +11,28 @@ const store = (state = {}, action) => {
           [action.payload.id]: action.payload.value,
         },
       };
+    case 'ON_CHANGE_DROPDOWN':
+      return {
+        ...state,
+        dropdowns: {
+          ...state.dropdowns,
+          [action.payload.id]: {
+            ...state.dropdowns && state.dropdowns[action.payload.id],
+            value: action.payload.value,
+          },
+        },
+      };
+    case 'ON_TOGGLE_DROPDOWN':
+      return {
+        ...state,
+        dropdowns: {
+          ...state.dropdowns,
+          [action.payload.id]: {
+            ...state.dropdowns && state.dropdowns[action.payload.id],
+            open: action.payload.value,
+          },
+        },
+      };
     default:
       return state;
   }

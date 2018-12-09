@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import Text from '../text';
 
@@ -8,6 +9,20 @@ import { getInputValue } from '../../selectors';
 import './input.css';
 
 const inputValue = props => getInputValue(props.store, props.id);
+
+const eraseButton = (props, active) => (
+  <button
+    className={`
+        clear-all
+        ${active && 'active'}
+      `}
+    onClick={() => props.onChangeInput(props.id, '')}
+  >
+    <FontAwesomeIcon icon="eraser" />
+  </button>
+);
+
+const hasValue = props => inputValue(props).length > 0;
 
 const Input = props => (
   <div className="input-container">
@@ -20,13 +35,13 @@ const Input = props => (
       onChange={event => props.onChangeInput(props.id, event.target.value)}
     />
     <Text
-      className="floating-placeholder"
-      inactive={inputValue(props).length === 0 && 'inactive'}
+      type="floating-placeholder"
+      active={hasValue(props)}
       size="floating"
     >
       {props.placeholder}
     </Text>
-    <button className="clear-all" onClick={() => props.onChangeInput(props.id, '')}>X</button>
+    {eraseButton(props, hasValue(props))}
   </div>
 );
 const mapStateToProps = state => ({

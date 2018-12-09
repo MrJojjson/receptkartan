@@ -1,6 +1,4 @@
 export const onChangeInput = (id, value) => (dispatch) => {
-  console.log('id', id);
-  console.log('value', value);
   dispatch({
     type: 'ON_CHANGE_INPUT',
     payload: {
@@ -10,9 +8,26 @@ export const onChangeInput = (id, value) => (dispatch) => {
   });
 };
 
-export const secondAction = () => (dispatch) => {
+export const onChangeDropdown = (id, value) => (dispatch) => {
+  console.log('id', id);
+  console.log('value', value);
   dispatch({
-    type: 'SECOND_ACTION',
-    payload: 'result_of_simple_action',
+    type: 'ON_CHANGE_DROPDOWN',
+    payload: {
+      id,
+      value,
+    },
+  });
+};
+
+export const onToggleDropdown = (id, value) => (dispatch) => {
+  console.log('id', id);
+  console.log('switch', value);
+  dispatch({
+    type: 'ON_TOGGLE_DROPDOWN',
+    payload: {
+      id,
+      value,
+    },
   });
 };

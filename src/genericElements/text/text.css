@@ -29,7 +29,14 @@
   font-size: 10px;
 }
 
-.inactive {
+.floating-placeholder {
+  position: absolute;
+  top:0;
+  left:7.5px;
   opacity: 0;
+}
+
+.floating-placeholder.active {
+  opacity: 1;
   transition: all 0.5s;
 }
