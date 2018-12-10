@@ -11,7 +11,7 @@ const Button = ({ size, title, border }) => (
       ${border ? 'border' : ''}
     `}
   >
-    <Text>{title}</Text>
+    <Text title={title} />
   </button>
 );
 

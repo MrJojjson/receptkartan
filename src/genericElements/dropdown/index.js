@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import { filterArrayBasedOnString } from '../../utils';
+
 import Text from '../text';
 
 import {
@@ -18,6 +20,7 @@ import './dropdown.css';
 
 const inputValue = props => getDropdownValue(props.store, props.id);
 const dropdownOpen = props => isDropdownOpen(props.store, props.id);
+const hasValue = props => inputValue(props).length > 0;
 
 const eraseButton = (props, active) => (
   <button
@@ -31,7 +34,7 @@ const eraseButton = (props, active) => (
   </button>
 );
 
-const showDropdownButton = (props, active) => (
+const dropdownToggleButton = (props, active) => (
   <button
     className={`
       toggle-list-button
@@ -43,7 +46,35 @@ const showDropdownButton = (props, active) => (
   </button>
 );
 
-const hasValue = props => inputValue(props).length > 0;
+const dropdownOptionsItem = (props, item) => (
+  <li
+    key={item.id}
+    onClick={() => props.onChangeDropdown(props.id, item.value)}
+  >
+    {item.value}
+  </li>
+);
+
+const dropdownOptionsList = props => (
+  <ul
+    className={`
+      dropdown-list-container
+      ${dropdownOpen(props) && 'active'}
+    `}
+  >
+  {filterArrayBasedOnString(props.options, inputValue(props)).map(o => dropdownOptionsItem(props, o))}
+  </ul>
+);
+
+const onChangeInputText = (event, props) => {
+  const { value } = event.target;
+  props.onChangeDropdown(props.id, value);
+  if (value.length > 0 && !dropdownOpen(props)) {
+    props.onToggleDropdown(props.id, !dropdownOpen(props));
+  } else if (value.length === 0 && dropdownOpen(props)) {
+    props.onToggleDropdown(props.id, !dropdownOpen(props));
+  }
+};
 
 const Dropdown = props => (
   <div className="dropdown-container">
@@ -54,25 +85,18 @@ const Dropdown = props => (
         `}
         placeholder={props.placeholder}
         value={inputValue(props)}
-        onChange={event => props.onChangeDropdown(props.id, event.target.value)}
+        onChange={event => onChangeInputText(event, props)}
       />
       <Text
         type="floating-placeholder"
         active={hasValue(props)}
         size="floating"
-      >
-        {props.placeholder}
-      </Text>
+        title={props.placeholder}
+      />
       {eraseButton(props, hasValue(props))}
-      {showDropdownButton(props, dropdownOpen(props))}
+      {dropdownToggleButton(props, dropdownOpen(props))}
     </div>
-    <div
-      className={`
-        dropdown-list-container
-        ${dropdownOpen(props) && 'active'}
-      `}
-    >
-    </div>
+    {dropdownOptionsList(props)}
   </div>
 );
 

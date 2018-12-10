@@ -38,9 +38,8 @@ const Input = props => (
       type="floating-placeholder"
       active={hasValue(props)}
       size="floating"
-    >
-      {props.placeholder}
-    </Text>
+      title={props.placeholder}
+    />
     {eraseButton(props, hasValue(props))}
   </div>
 );

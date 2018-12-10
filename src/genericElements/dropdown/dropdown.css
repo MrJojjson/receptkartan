@@ -16,23 +16,47 @@
 
 .dropdown-list-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  list-style-type: none;
+  padding: 0px;
   position: absolute;
-  min-height: 0px;
+  min-height: auto;
   max-height: 0px;
-  height: 0px;
+  height: auto;
   width:100%;
   transition: all 0.5s;
-  top: 47px;
+  top: 32px;
+  overflow: auto;
+  border-bottom: 0px solid #16a085;
 }
 
 .dropdown-list-container.active {
-  min-height: 200px;
-  min-height: 300px;
-  height: 100%;
+  max-height: 200px;
   border-bottom: 2px solid #16a085;
   background: #16a0840b;
+  transition: all 0.5s;
+}
+
+.dropdown-list-container li {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+  min-height: 30px;
+  width:100%;
+  height: 30px;
+  padding: 5px 10px 5px 10px;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+
+
+.dropdown-list-container li:hover {
+  background: #16a085;
+  color: #FFFFFF;
+  opacity: 0.75;
   transition: all 0.5s;
 }
 

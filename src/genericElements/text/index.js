@@ -5,6 +5,7 @@ import './text.css';
 const Text = ({
   size,
   children,
+  title,
   type,
   active,
 }) => (
@@ -14,7 +15,7 @@ const Text = ({
       ${active && 'active'}
     `}
   >
-    {children}
+    {title}
   </div>
 );
 
