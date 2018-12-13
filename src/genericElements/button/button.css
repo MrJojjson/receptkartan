@@ -1,4 +1,4 @@
-.x-large-button, .large-button, .medium-button, .small-button, .auto-button {
+.x-large-button, .large-button, .medium-button, .small-button, .auto-button, .icon-button {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -37,7 +37,13 @@
   min-width: auto;
 }
 
-.x-large-button:hover , .large-button:hover , .medium-button:hover , .small-button:hover , .auto-button:hover {
+.icon-button {
+  max-width: auto;
+  min-width: auto;
+  border-radius: 50px;
+}
+
+.x-large-button:hover , .large-button:hover , .medium-button:hover , .small-button:hover , .auto-button:hover, .icon-button:hover {
   background: transparent;
   color: #16a085;
   opacity: 0.75;

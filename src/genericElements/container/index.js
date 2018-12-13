@@ -2,8 +2,17 @@ import React from 'react';
 
 import './container.css';
 
-const Container = ({ size, children }) => (
-  <div className={`${size}-container`}>
+const Container = ({
+  size,
+  align,
+  children,
+}) => (
+  <div
+    className={`
+      ${size}-container
+      ${align}
+    `}
+  >
     {children}
   </div>
 );
