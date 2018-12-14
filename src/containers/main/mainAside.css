@@ -1,0 +1,9 @@
+.main-aside-ul {
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 15px;
+}
+
+.main-aside-li {
+  flex-grow: 1;
+}

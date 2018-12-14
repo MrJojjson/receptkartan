@@ -1,0 +1,49 @@
+.x-large-badge, .large-badge, .medium-badge, .small-badge, .auto-badge {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #16a085;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-radius: 25px;
+  margin: 5px;
+  padding: 7.5px 10px;
+  color: #FFFFFF;
+  opacity: 1;
+  transition: all 0.5s;
+}
+
+.x-large-badge {
+  min-width: 200px;
+}
+
+.large-badge {
+  min-width: 150px;
+}
+
+.medium-badge {
+  min-width: 100px;
+}
+
+.small-badge {
+  min-width: 75px;
+}
+
+.auto-badge {
+  max-width: auto;
+  min-width: auto;
+}
+
+.remove-icon {
+  margin: 0px 0px 0px 7.5px;
+  background: transparent;
+  border: none;
+  color: #FFFFFF;
+  cursor: pointer;
+}
+
+.remove-icon:hover {
+  opacity: 0.5;
+  transition: all 0.5s;
+}

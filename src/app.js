@@ -3,21 +3,29 @@ import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faEraser, faChevronCircleDown } from '@fortawesome/free-solid-svg-icons';
+import {
+  faEraser,
+  faChevronDown,
+  faTimes,
+  faPlus,
+  faMinus,
+  faUndoAlt,
+  faCheck,
+  faSquare,
+} from '@fortawesome/free-solid-svg-icons';
+
+import Main from './pages/main';
 
 import Container from './genericElements/container';
-import Button from './genericElements/button';
-import Text from './genericElements/text';
-import Input from './genericElements/input';
-import Dropdown from './genericElements/dropdown';
 
-import mockDropdownOptions from './data';
-
-library.add(faEraser, faChevronCircleDown);
+library.add(faEraser, faChevronDown, faTimes, faPlus, faMinus, faUndoAlt, faCheck, faSquare);
 
 const App = () => (
   <Container size="full">
-    <Text size="small" title="Small text" />
+    <Container size="header" >
+    </Container>
+    <Main />
+    {/* <Text size="small" title="Small text" />
     <Text size="medium" title="Medium text" />
     <Text size="large" title="Large text" />
     <Text size="x-large" title="X-large text" />
@@ -28,7 +36,7 @@ const App = () => (
     <Input size="large" id="large" placeholder="Large" />
     <Input size="x-large" id="x-large" placeholder="X-Large" />
     <Dropdown size="large" id="dropdown" options={mockDropdownOptions} placeholder="Search..." />
-
+    <Badge size="medium" title="Title of badge" /> */}
   </Container>
 );
 

@@ -33,6 +33,51 @@ const store = (state = {}, action) => {
           },
         },
       };
+    case 'ON_ADD_ITEM_TO_LIST':
+      return {
+        ...state,
+        lists: {
+          ...state.lists,
+          [action.payload.id]: state.lists && state.lists[action.payload.id]
+            ? [...state.lists[action.payload.id], action.payload.item]
+            : [action.payload.item],
+        },
+      };
+    // NOT WORKING!
+    case 'ON_REMOVE_ITEM_FROM_LIST':
+      return {
+        ...state,
+        lists: {
+          ...state.lists,
+          [action.payload.id]: state.lists[action.payload.id].splice(state.lists[action.payload.id].filter(a => a.code.indexOf(action.payload.item.code)), 1),
+        },
+      };
+    case 'ON_MAP_CONTROLS_ZOOM':
+      return {
+        ...state,
+        map: {
+          ...state.map,
+          zoom: action.payload.zoom,
+        },
+      };
+    case 'ON_MAP_CONTROLS_ZOOM_RESET':
+      return {
+        ...state,
+        map: {
+          ...state.map,
+          zoom: action.payload.zoom,
+          center: action.payload.center,
+        },
+      };
+    case 'ON_MAP_CITY_CLICK':
+      return {
+        ...state,
+        map: {
+          ...state.map,
+          zoom: action.payload.zoom,
+          center: action.payload.center,
+        },
+      };
     default:
       return state;
   }

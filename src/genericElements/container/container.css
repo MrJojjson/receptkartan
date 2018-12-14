@@ -1,12 +1,15 @@
-.full-container, .x-large-container, .large-container, .medium-container, .small-container, .auto-container {
+:root {
+  --content-width: 80vw;
+}
+
+.full-container, .x-large-container, .large-container, .medium-container, .small-container, .auto-container, .header-container {
   display: flex;
-  justify-content: center;
   align-items: center;
   flex-direction: column;
-  background: #eeeeee;
-  height: 100vh;
+  height: 92.5vh;
   width: 100vw;
-  min-height: 100vh;
+  min-height: 92.5vh;
+  max-height: 92.5vh;
   min-width: 100vw;
 }
 
@@ -43,4 +46,56 @@
   width: auto;
   min-height: auto;
   min-width: auto;
+}
+
+.header-container {
+  height: 7.5vh;
+  width: 100vw;
+  min-height: 7.5vh;
+  max-height: 7.5vh;
+  min-width: 100vw;
+  border-bottom: 1px solid #16a085;
+  box-sizing: border-box;
+}
+
+/* .footer-container {
+  height: 4.5vh;
+  width: 100vw;
+  min-height: 4.5vh;
+  min-width: 100vw;
+  border-top: 1px solid #16a085;
+} */
+
+.content-container {
+  height: 100%;
+  width: var(--content-width);
+  min-height: auto;
+  min-width: var(--content-width);
+}
+
+.aside-container {
+  height: 92.5vh;
+  width: calc(100vw - var(--content-width));
+  min-height: 92.5vh;
+  min-width: calc(100vw - var(--content-width));
+  max-width: calc(100vw - var(--content-width));
+  overflow: hidden;
+  border-right: 1px solid #16a085;
+  box-sizing: border-box;
+  padding-bottom: 125px;
+}
+
+.center {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
 }

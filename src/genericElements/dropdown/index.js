@@ -25,7 +25,7 @@ const hasValue = props => inputValue(props).length > 0;
 const eraseButton = (props, active) => (
   <button
     className={`
-      clear-all
+      dropdown-clear-all
       ${active && 'active'}
     `}
     onClick={() => props.onChangeDropdown(props.id, '')}
@@ -42,14 +42,21 @@ const dropdownToggleButton = (props, active) => (
     `}
     onClick={() => props.onToggleDropdown(props.id, !active)}
   >
-    <FontAwesomeIcon icon="chevron-circle-down" />
+    <FontAwesomeIcon icon="chevron-down" />
   </button>
 );
 
 const dropdownOptionsItem = (props, item) => (
   <li
-    key={item.id}
-    onClick={() => props.onChangeDropdown(props.id, item.value)}
+    className={`
+      ${inputValue(props) === item.value && 'picked'}
+    `}
+    key={item.value}
+    onClick={() => [
+      props.onChangeDropdown(props.id, item.value),
+      props.onToggleDropdown(props.id, !dropdownOpen(props)),
+      props.onListItemClick(props.id, item),
+    ]}
   >
     {item.value}
   </li>

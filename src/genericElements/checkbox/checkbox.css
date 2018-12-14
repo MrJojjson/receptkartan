@@ -1,0 +1,60 @@
+.x-large-checkbox, .large-checkbox, .medium-checkbox, .small-checkbox, .auto-checkbox {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #16a085;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 5px;
+  padding: 7.5px 10px 7.5px 40px;
+  color: #FFFFFF;
+  opacity: 1;
+  transition: all 0.5s;
+}
+
+.x-large-checkbox {
+  min-width: 200px;
+}
+
+.large-checkbox {
+  min-width: 150px;
+}
+
+.medium-checkbox {
+  min-width: 100px;
+}
+
+.small-checkbox {
+  min-width: 75px;
+}
+
+.auto-checkbox {
+  max-width: auto;
+  min-width: auto;
+}
+
+.check-icon {
+  position: absolute;
+  left: 3px;
+  top: 10%;
+  background: transparent;
+  border: none;
+  color: #16a085;
+  cursor: pointer;
+  background: #FFFFFF;
+  height: 80%;
+  width: 30px;
+  transition: all 0.5s;
+}
+
+.check-icon:hover {
+  background: #16a085;
+  transition: all 0.5s;
+}
+
+.check-icon:hover .check-icon-checkmark{
+  color: #FFFFFF;
+  transition: all 0.5s;
+}

@@ -1,0 +1,34 @@
+.composable-map {
+  width: 100%;
+  height: 100%;
+}
+
+.countries {
+  fill: #ECEFF1;
+  stroke: #607D8B;
+  stroke-width: 0.75;
+  outline: none;
+}
+
+.countries:hover {
+  fill: #CFD8DC;
+  stroke: #607D8B;
+  stroke-width: 0.75;
+  outline: none;
+}
+
+.countries:active {
+  fill: #16a085;
+  stroke: #607D8B;
+  stroke-width: 0.75;
+  outline: none;
+}
+
+.rsm-annotation {
+  font-size: 6px;
+  background: red;
+}
+
+.countries:hover ~ .rsm-annotation {
+  color: #fff;
+}
