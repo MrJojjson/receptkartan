@@ -24,9 +24,6 @@ export const onChangeDropdown = (page, id, value, splitValue, typingWord, typing
 };
 
 export const onChangeDropdownSplitValue = (page, id, value, index) => (dispatch) => {
-  console.log('value', value);
-  console.log('index', index);
-
   dispatch({
     type: 'ON_CHANGE_DROPDOWN_SPLIT_VALUE',
     payload: {

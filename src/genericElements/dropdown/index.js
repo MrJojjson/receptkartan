@@ -31,17 +31,25 @@ const inputValue = props => getDropdownValue(props.store, props.page, props.id);
 const inputTypingWord = props => getDropdownTypingWord(props.store, props.page, props.id);
 const inputTypingWordIndex = props => getDropdownTypingWordIndex(props.store, props.page, props.id);
 const inputSplitValue = props => getDropdownSplitValue(props.store, props.page, props.id);
-const inputSplitValueT = props => getDropdownSplitValue(props.store, props.page, props.id);
 
 const dropdownOpen = props => isDropdownOpen(props.store, props.page, props.id);
 const getPageList = props => getList(props.store, props.page, props.id);
 const hasValue = props => inputValue(props).length > 0;
 
-const onItemClick = (props, item) => [
-  props.onChangeDropdownSplitValue(props.page, props.id, item.value, inputTypingWordIndex(props)),
-  props.onToggleDropdown(props.page, props.id, !dropdownOpen(props)),
-  // props.onAddItemToList(props.page, props.id, item),
-];
+const onItemClick = (props, item) => {
+  if (props.multiOptions) {
+    return [
+      props.onChangeDropdownSplitValue(props.page, props.id, item.value, inputTypingWordIndex(props)),
+      props.onToggleDropdown(props.page, props.id, !dropdownOpen(props)),
+      // props.onAddItemToList(props.page, props.id, item),
+    ];
+  }
+  return [
+    props.onChangeDropdown(props.page, props.id, item.value),
+    props.onToggleDropdown(props.page, props.id, !dropdownOpen(props)),
+    // props.onAddItemToList(props.page, props.id, item),
+  ];
+};
 
 const returnWord = (text, caretPos) => {
   const preText = text.substring(0, caretPos);
@@ -79,16 +87,29 @@ const dropdownToggleButton = (props, active) => (
   </button>
 );
 
-const dropdownOptionsItem = (props, item, active) => (
+const dropdownOptionsItem = (props, item, active, i) => (
   <li
     className={`
       ${inputValue(props) === item.value && 'picked'}
       ${active && 'dropdown-item-active'}
     `}
     key={`${props.id}-${item.value}`}
-    onClick={() => onItemClick(props, item)}
+    onClick={() => [
+      onItemClick(props, item),
+      document.getElementById(`${props.page}-${props.id}`) && document.getElementById(`${props.page}-${props.id}`).focus(),
+    ]}
+    onKeyPress={e => (e.key === 'Enter' || e.key === 13)
+      && [
+        onItemClick(props, item),
+        document.getElementById(`${props.page}-${props.id}`) && document.getElementById(`${props.page}-${props.id}`).focus(),
+      ]
+    }
+    // onFocus={() => [
+    //   onItemClick(props, item),
+    //   document.getElementById(`${props.page}-${props.id}`) && document.getElementById(`${props.page}-${props.id}`).focus(),
+    // ]}
   >
-    {item.value}
+    <a href="#">{item.value}</a>
   </li>
 );
 
@@ -99,13 +120,13 @@ const dropdownOptionsList = props => (
       ${dropdownOpen(props) && 'active'}
     `}
   >
-  {filterArrayBasedOnString(props.options, inputTypingWord(props)).map(item => (
-    dropdownOptionsItem(props, item, existItemInArray(getPageList(props), item))
+  {filterArrayBasedOnString(props.options, props.multiOptions ? inputTypingWord(props) : inputValue(props)).map((item, i) => (
+    dropdownOptionsItem(props, item, existItemInArray(getPageList(props), item), i)
   ))}
   </ul>
 );
 
-const onChangeInputText = (event, props) => {
+const onChangeMultiInputText = (event, props) => {
   const { value, selectionStart } = event.target;
   const caretPos = selectionStart;
   const splitValue = value.split(' ');
@@ -122,16 +143,29 @@ const onChangeInputText = (event, props) => {
   }
 };
 
+const onChangeInputText = (event, props) => {
+  const { value } = event.target;
+  props.onChangeDropdown(props.page, props.id, value, null, null, null);
+  if (value.length > 0 && !dropdownOpen(props)) {
+    props.onToggleDropdown(props.page, props.id, !dropdownOpen(props));
+  } else if (value.length === 0 && dropdownOpen(props)) {
+    props.onToggleDropdown(props.page, props.id, !dropdownOpen(props));
+  }
+};
+
 const Dropdown = props => (
   <div className="dropdown-container">
     <div className="dropdown-input-container">
       <input
+        id={`${props.page}-${props.id}`}
         className={`
           ${props.size}-dropdown
         `}
         placeholder={props.placeholder}
-        value={inputSplitValueT(props).join(' ')}
-        onChange={event => onChangeInputText(event, props)}
+        value={props.multiOptions ? inputSplitValue(props).join(' ') : inputValue(props)}
+        onChange={event => (
+          props.multiOptions ? onChangeMultiInputText(event, props) : onChangeInputText(event, props)
+        )}
         onKeyPress={e => (e.key === 'Enter' || e.key === 13) && onItemClick(props, inputValue(props))}
       />
       <Text
@@ -152,7 +186,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onChangeDropdown: (page, id, value, splitValue, typingWord, typingWordIndex) => dispatch(onChangeDropdown(page, id, value, splitValue, typingWord, typingWordIndex)),
+  onChangeDropdown: (page, id, value, splitValue, typingWord, typingWordIndex) => (
+    dispatch(onChangeDropdown(page, id, value, splitValue, typingWord, typingWordIndex))
+  ),
   onChangeDropdownSplitValue: (page, id, value, index) => dispatch(onChangeDropdownSplitValue(page, id, value, index)),
   onToggleDropdown: (page, id, value) => dispatch(onToggleDropdown(page, id, value)),
   onAddItemToList: (page, id, item) => dispatch(onAddItemToList(page, id, item)),

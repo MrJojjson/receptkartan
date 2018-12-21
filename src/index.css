@@ -25,5 +25,9 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 *:focus {
-  outline: none;
+  outline: red;
+}
+
+focus {
+  outline: red;
 }
