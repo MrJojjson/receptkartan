@@ -5,22 +5,16 @@ import Text from '../text';
 
 import './button.css';
 
-const Button = ({
-  size,
-  title,
-  icon,
-  border,
-  onButtonClick,
-}) => (
+const Button = props => (
   <button
     className={`
-      ${size}-button
-      ${border ? 'border' : ''}
+      ${props.size}-button
+      ${props.border ? 'border' : ''}
     `}
-    onClick={() => onButtonClick()}
+    onClick={() => props.onButtonClick()}
   >
-    <Text title={title} />
-    {icon && <FontAwesomeIcon icon={icon} size="lg"/>}
+    <Text title={props.title || props.item.value} />
+    {props.icon && <FontAwesomeIcon icon={props.icon} size="lg"/>}
   </button>
 );
 

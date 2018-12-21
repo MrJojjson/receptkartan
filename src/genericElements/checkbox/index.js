@@ -16,6 +16,7 @@ const Checkbox = props => (
       ${props.size}-checkbox
     `}
   >
+      {console.log('props checkbox', props)}
     <button
       className="check-icon"
       onClick={() => (
