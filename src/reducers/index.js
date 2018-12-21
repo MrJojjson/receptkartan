@@ -6,50 +6,82 @@ const store = (state = {}, action) => {
     case 'ON_CHANGE_INPUT':
       return {
         ...state,
-        inputs: {
-          ...state.inputs,
+        [action.payload.page]: {
+          ...state[action.payload.page],
           [action.payload.id]: action.payload.value,
         },
       };
     case 'ON_CHANGE_DROPDOWN':
       return {
         ...state,
-        dropdowns: {
-          ...state.dropdowns,
+        [action.payload.page]: {
+          ...state[action.payload.page],
           [action.payload.id]: {
-            ...state.dropdowns && state.dropdowns[action.payload.id],
+            ...state[action.payload.page] && state[action.payload.page][action.payload.id],
             value: action.payload.value,
+            typingWord: action.payload.typingWord,
+            splitValue: action.payload.splitValue,
+            typingWordIndex: action.payload.typingWordIndex,
           },
         },
       };
+    case 'ON_CHANGE_DROPDOWN_SPLIT_VALUE':
+      return update(state, {
+        [action.payload.page]: {
+          [action.payload.id]: {
+            splitValue: {
+              [action.payload.index]: { $set: action.payload.value },
+            },
+          },
+        },
+      });
     case 'ON_TOGGLE_DROPDOWN':
       return {
         ...state,
-        dropdowns: {
-          ...state.dropdowns,
+        [action.payload.page]: {
+          ...state[action.payload.page],
           [action.payload.id]: {
-            ...state.dropdowns && state.dropdowns[action.payload.id],
+            ...state[action.payload.page] && state[action.payload.page][action.payload.id],
             open: action.payload.value,
           },
         },
       };
-    case 'ON_ADD_ITEM_TO_LIST':
+    case 'ON_ADD_ITEM_TO_LIST': {
+      let isItemInList = -1;
+      if (state[action.payload.page][action.payload.id].list) {
+        isItemInList = state[action.payload.page][action.payload.id].list.findIndex(item => (
+          item.id === action.payload.item.id
+        ));
+      }
+      if (isItemInList !== -1) {
+        return {
+          ...state,
+        };
+      }
       return {
         ...state,
-        lists: {
-          ...state.lists,
-          [action.payload.id]: state.lists && state.lists[action.payload.id]
-            ? [...state.lists[action.payload.id], action.payload.item]
-            : [action.payload.item],
+        [action.payload.page]: {
+          ...state[action.payload.page],
+          [action.payload.id]: {
+            ...state[action.payload.page] && state[action.payload.page][action.payload.id],
+            list: state[action.payload.page][action.payload.id].list
+              ? [...state[action.payload.page][action.payload.id].list, action.payload.item]
+              : [action.payload.item],
+          },
         },
       };
-    // NOT WORKING!
+    }
     case 'ON_REMOVE_ITEM_FROM_LIST':
       return {
         ...state,
-        lists: {
-          ...state.lists,
-          [action.payload.id]: state.lists[action.payload.id].splice(state.lists[action.payload.id].filter(a => a.code.indexOf(action.payload.item.code)), 1),
+        [action.payload.page]: {
+          ...state[action.payload.page],
+          [action.payload.id]: {
+            ...state[action.payload.page][action.payload.id],
+            list: [
+              ...state[action.payload.page][action.payload.id].list.filter(item => item !== action.payload.item),
+            ],
+          },
         },
       };
     case 'ON_MAP_CONTROLS_ZOOM':

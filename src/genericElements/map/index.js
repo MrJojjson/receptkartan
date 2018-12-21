@@ -6,8 +6,6 @@ import {
   Geography,
   Markers,
   Marker,
-  Annotations,
-  Annotation,
 } from 'react-simple-maps';
 import { Motion, spring } from 'react-motion';
 import { connect } from 'react-redux';
@@ -20,12 +18,9 @@ import {
   getMapSearchCountries,
 } from '../../selectors';
 
-import { mockDataCities, countries } from '../../data';
+import { countries } from '../../data';
 
 import './map.css';
-
-const getTextWidth = id => document.getElementById(id).getBBox().width;
-
 
 const Map = props => (
   <Motion
@@ -85,21 +80,6 @@ const Map = props => (
               </Marker>
             ))}
           </Markers>
-          {/* <Annotations>
-            {countries.map((city, i) => (
-              <Annotation
-                key={i}
-                dx={ 7 }
-                dy={ -7 }
-                subject={city.coordinates}
-                strokeWidth={ 0.5 }
-                stroke="#16a085"
-                >
-                <text fill='#16a085' id={`map-text-${i}`}>{city.name}</text>
-            {setTimeout(() => <rect fill='rgba(255, 255, 255, 0.75)' width={getTextWidth(`map-text-${i}`)} height="13" x="-5" y="-10"></rect>, 0)}
-              </Annotation>
-            ))}
-          </Annotations> */}
         </ZoomableGroup>
       </ComposableMap>
     )}

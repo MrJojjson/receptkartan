@@ -1,47 +1,70 @@
-export const onChangeInput = (id, value) => (dispatch) => {
+export const onChangeInput = (page, id, value) => (dispatch) => {
   dispatch({
     type: 'ON_CHANGE_INPUT',
     payload: {
+      page,
       id,
       value,
     },
   });
 };
 
-export const onChangeDropdown = (id, value) => (dispatch) => {
+export const onChangeDropdown = (page, id, value, splitValue, typingWord, typingWordIndex) => (dispatch) => {
   dispatch({
     type: 'ON_CHANGE_DROPDOWN',
     payload: {
+      page,
       id,
       value,
+      splitValue,
+      typingWord,
+      typingWordIndex,
     },
   });
 };
 
-export const onToggleDropdown = (id, value) => (dispatch) => {
+export const onChangeDropdownSplitValue = (page, id, value, index) => (dispatch) => {
+  console.log('value', value);
+  console.log('index', index);
+
+  dispatch({
+    type: 'ON_CHANGE_DROPDOWN_SPLIT_VALUE',
+    payload: {
+      page,
+      id,
+      value,
+      index,
+    },
+  });
+};
+
+export const onToggleDropdown = (page, id, value) => (dispatch) => {
   dispatch({
     type: 'ON_TOGGLE_DROPDOWN',
     payload: {
+      page,
       id,
       value,
     },
   });
 };
 
-export const onAddItemToList = (id, item) => (dispatch) => {
+export const onAddItemToList = (page, id, item) => (dispatch) => {
   dispatch({
     type: 'ON_ADD_ITEM_TO_LIST',
     payload: {
+      page,
       id,
       item,
     },
   });
 };
 
-export const onRemoveItemFromList = (id, item) => (dispatch) => {
+export const onRemoveItemFromList = (page, id, item) => (dispatch) => {
   dispatch({
     type: 'ON_REMOVE_ITEM_FROM_LIST',
     payload: {
+      page,
       id,
       item,
     },

@@ -69,6 +69,11 @@
   transition: all 0.5s;
 }
 
+.dropdown-item-active {
+  opacity:0.25;
+  pointer-events: none;
+}
+
 .dropdown-clear-all {
   background: transparent;
   border: none;

@@ -17,10 +17,10 @@ const MapSearch = props => (
   <div className="map-search-container">
     <Dropdown
       size="x-large"
-      id="mapSearch"
+      id="country"
+      page="mapSearch"
       options={countries}
       placeholder="Search for country"
-      onListItemClick={(id, item) => props.onAddItemToList(id, item)}
     />
   </div>
 );
