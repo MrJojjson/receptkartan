@@ -49,6 +49,7 @@ const AddRecipeContent = props => (
       id="ingredients"
       page={PAGE}
       options={getCorrectOptionList(props)}
+      multiOptions
       placeholder="Add ingredient"
     />
     <List

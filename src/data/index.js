@@ -790,7 +790,6 @@ export const countries = [
 export const measuringUnits = [
   { value: 'teaspoon', code: ['t', 'tsp'] },
   { value: 'tablespoon', code: ['T', 'tbl.', 'tbs.', 'tbsp'] },
-  { value: 'fluid ounce', code: ['fl', 'oz'] },
   { value: 'gill' },
   { value: 'cup', code: ['c'] },
   { value: 'pint', code: ['p', 'pt', 'fl'] },
