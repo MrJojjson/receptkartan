@@ -53,7 +53,7 @@ const Map = props => (
               )))}
           </Geographies>
           <Markers>
-            {getMapSearchCountries(props.store, 'mapSearch').map((city, i) => (
+            {getMapSearchCountries(props.store, 'mapSearch', 'country').map((city, i) => (
               <Marker
                 key={i}
                 marker={city}

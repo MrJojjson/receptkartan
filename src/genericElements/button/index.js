@@ -13,7 +13,7 @@ const Button = props => (
     `}
     onClick={() => props.onButtonClick()}
   >
-    <Text title={props.title || props.item.value} />
+    <Text title={props.title || (props.item && props.item.value)} />
     {props.icon && <FontAwesomeIcon icon={props.icon} size="lg"/>}
   </button>
 );

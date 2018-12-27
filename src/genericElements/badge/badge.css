@@ -35,15 +35,16 @@
   min-width: auto;
 }
 
-.remove-icon {
-  margin: 0px 0px 0px 7.5px;
+.remove-icon, .edit-icon {
+  margin: 0px 0px 0px 5px;
   background: transparent;
   border: none;
   color: #FFFFFF;
   cursor: pointer;
+  transition: all 0.5s;
 }
 
-.remove-icon:hover {
+.remove-icon:hover, .edit-icon:hover {
   opacity: 0.5;
   transition: all 0.5s;
 }

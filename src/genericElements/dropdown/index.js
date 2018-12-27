@@ -12,6 +12,7 @@ import {
 } from '../../actions';
 
 import {
+  getDropdownItem,
   getDropdownValue,
   getDropdownTypingWord,
   getDropdownTypingWordIndex,
@@ -36,18 +37,37 @@ const dropdownOpen = props => isDropdownOpen(props.store, props.page, props.id);
 const getPageList = props => getList(props.store, props.page, props.id);
 const hasValue = props => inputValue(props).length > 0;
 
+const onEraseButtonClick = props => [
+  props.onChangeDropdown(props.page, props.id, ''),
+  props.onToggleDropdown(props.page, props.id, false),
+  document.getElementById(`${props.page}-${props.id}`) && document.getElementById(`${props.page}-${props.id}`).focus(),
+];
+
+const onAddItem = (props) => {
+  const item = getDropdownItem(props.store, props.page, props.id);
+  const { splitValue } = item;
+  item.id = splitValue && splitValue[splitValue.length - 1];
+  item.value = splitValue && splitValue.map(sv => sv).join(' ');
+  return [
+    props.onAddItemToList(props.page, props.id, item),
+    onEraseButtonClick(props),
+  ];
+};
+
 const onItemClick = (props, item) => {
   if (props.multiOptions) {
     return [
       props.onChangeDropdownSplitValue(props.page, props.id, item.value, inputTypingWordIndex(props)),
       props.onToggleDropdown(props.page, props.id, !dropdownOpen(props)),
-      // props.onAddItemToList(props.page, props.id, item),
     ];
   }
+  const itemToSend = item;
+  itemToSend.id = item.value;
   return [
     props.onChangeDropdown(props.page, props.id, item.value),
     props.onToggleDropdown(props.page, props.id, !dropdownOpen(props)),
-    // props.onAddItemToList(props.page, props.id, item),
+    props.onAddItemToList(props.page, props.id, itemToSend),
+    onEraseButtonClick(props),
   ];
 };
 
@@ -66,10 +86,7 @@ const eraseButton = (props, active) => (
       dropdown-clear-all
       ${active && 'active'}
     `}
-    onClick={() => [
-      props.onChangeDropdown(props.page, props.id, ''),
-      props.onToggleDropdown(props.page, props.id, !dropdownOpen(props)),
-    ]}
+    onClick={() => onEraseButtonClick(props)}
   >
     <FontAwesomeIcon icon="eraser" />
   </button>
@@ -113,6 +130,10 @@ const dropdownOptionsItem = (props, item, active, i) => (
   </li>
 );
 
+const getFilteredArray = props => (
+  filterArrayBasedOnString(props.options, props.multiOptions ? inputTypingWord(props) : inputValue(props))
+);
+
 const dropdownOptionsList = props => (
   <ul
     className={`
@@ -120,11 +141,20 @@ const dropdownOptionsList = props => (
       ${dropdownOpen(props) && 'active'}
     `}
   >
-  {filterArrayBasedOnString(props.options, props.multiOptions ? inputTypingWord(props) : inputValue(props)).map((item, i) => (
-    dropdownOptionsItem(props, item, existItemInArray(getPageList(props), item), i)
-  ))}
+  {getFilteredArray(props).map((item, i) => {
+    const existItem = existItemInArray(getPageList(props), item);
+    return dropdownOptionsItem(props, item, existItem, i);
+  })}
   </ul>
 );
+
+const toogleDropdownOptions = (props, value) => {
+  if (value.length > 0 && !dropdownOpen(props)) {
+    props.onToggleDropdown(props.page, props.id, !dropdownOpen(props));
+  } else if (value.length === 0 && dropdownOpen(props)) {
+    props.onToggleDropdown(props.page, props.id, !dropdownOpen(props));
+  }
+};
 
 const onChangeMultiInputText = (event, props) => {
   const { value, selectionStart } = event.target;
@@ -132,42 +162,53 @@ const onChangeMultiInputText = (event, props) => {
   const splitValue = value.split(' ');
   const typingWord = returnWord(value, caretPos);
   const typingWordIndex = splitValue.indexOf(typingWord);
+
   if (splitValue) {
     props.onChangeDropdown(props.page, props.id, value, splitValue, typingWord, typingWordIndex);
   }
-
-  if (value.length > 0 && !dropdownOpen(props)) {
-    props.onToggleDropdown(props.page, props.id, !dropdownOpen(props));
-  } else if (value.length === 0 && dropdownOpen(props)) {
-    props.onToggleDropdown(props.page, props.id, !dropdownOpen(props));
-  }
+  toogleDropdownOptions(props, value);
 };
 
 const onChangeInputText = (event, props) => {
   const { value } = event.target;
   props.onChangeDropdown(props.page, props.id, value, null, null, null);
-  if (value.length > 0 && !dropdownOpen(props)) {
-    props.onToggleDropdown(props.page, props.id, !dropdownOpen(props));
-  } else if (value.length === 0 && dropdownOpen(props)) {
-    props.onToggleDropdown(props.page, props.id, !dropdownOpen(props));
-  }
+  toogleDropdownOptions(props, value);
 };
+
+const renderInput = props => (
+  <input
+    id={`${props.page}-${props.id}`}
+    className={`
+      ${props.size}-dropdown
+    `}
+    placeholder={props.placeholder}
+    value={props.multiOptions ? inputSplitValue(props).join(' ') : inputValue(props)}
+    onChange={event => (
+      props.multiOptions ? onChangeMultiInputText(event, props) : onChangeInputText(event, props)
+    )}
+    onKeyPress={e => (e.key === 'Enter' || e.key === 13) && onAddItem(props)}
+  />
+);
+
+// const renderTextarea = props => (
+//   <textarea
+//     id={`${props.page}-${props.id}`}
+//     className={`
+//       ${props.size}-dropdown
+//     `}
+//     placeholder={props.placeholder}
+//     value={props.multiOptions ? inputSplitValue(props).join(' ') : inputValue(props)}
+//     onChange={event => (
+//       props.multiOptions ? onChangeMultiInputText(event, props) : onChangeInputText(event, props)
+//     )}
+//     onKeyPress={e => (e.key === 'Enter' || e.key === 13) && onAddItem(props)}
+//   />
+// );
 
 const Dropdown = props => (
   <div className="dropdown-container">
     <div className="dropdown-input-container">
-      <input
-        id={`${props.page}-${props.id}`}
-        className={`
-          ${props.size}-dropdown
-        `}
-        placeholder={props.placeholder}
-        value={props.multiOptions ? inputSplitValue(props).join(' ') : inputValue(props)}
-        onChange={event => (
-          props.multiOptions ? onChangeMultiInputText(event, props) : onChangeInputText(event, props)
-        )}
-        onKeyPress={e => (e.key === 'Enter' || e.key === 13) && onItemClick(props, inputValue(props))}
-      />
+      {renderInput(props)}
       <Text
         type="floating-placeholder"
         active={hasValue(props)}
@@ -177,7 +218,7 @@ const Dropdown = props => (
       {eraseButton(props, hasValue(props))}
       {dropdownToggleButton(props, dropdownOpen(props))}
     </div>
-    {dropdownOptionsList(props)}
+    {dropdownOpen(props) ? dropdownOptionsList(props) : null}
   </div>
 );
 
