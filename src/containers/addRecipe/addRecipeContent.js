@@ -58,6 +58,7 @@ const AddRecipeContent = props => (
       size="auto"
       page={PAGE}
       id="ingredients"
+      editable
     />
     <Dropdown
       size="x-large"
@@ -72,6 +73,22 @@ const AddRecipeContent = props => (
       size="auto"
       page={PAGE}
       id="country"
+    />
+    <Dropdown
+      size="x-large"
+      multiline
+      id="instruction"
+      page={PAGE}
+      options={getList(props.store, PAGE, 'ingredients')}
+      multiOptions
+      placeholder="Add instructions"
+    />
+    <List
+      options={getList(props.store, PAGE, 'instruction')}
+      type="Text"
+      size="auto"
+      page={PAGE}
+      id="instruction"
     />
   </Container>
 );

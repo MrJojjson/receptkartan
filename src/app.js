@@ -13,13 +13,14 @@ import {
   faUndoAlt,
   faCheck,
   faSquare,
+  faEdit,
 } from '@fortawesome/free-solid-svg-icons';
 
 import Main from './pages/main';
 import AddRecipe from './pages/addRecipe';
 import Container from './genericElements/container';
 
-library.add(faEraser, faChevronDown, faTimes, faPlus, faMinus, faUndoAlt, faCheck, faSquare);
+library.add(faEraser, faChevronDown, faTimes, faPlus, faMinus, faUndoAlt, faCheck, faSquare, faEdit);
 
 const App = () => (
   <Container size="full">

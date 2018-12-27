@@ -6,6 +6,10 @@ export const getList = (store, page, id) => (
   store[page] && store[page][id] && store[page][id].list
 ) || [];
 
+export const getDropdownItem = (store, page, id) => (
+  store && store[page] && store[page][id] && store[page][id]
+) || [];
+
 export const getDropdownValue = (store, page, id) => (
   store && store[page] && store[page][id] && store[page][id].value
 ) || '';
@@ -34,6 +38,6 @@ export const getMapCenter = store => (
   store.map && store.map.center
 ) || [0, 20];
 
-export const getMapSearchCountries = (store, id) => (
-  store.lists && store.lists[id]
+export const getMapSearchCountries = (store, page, id) => (
+  store[page] && store[page][id] && store[page][id].list
 ) || [];

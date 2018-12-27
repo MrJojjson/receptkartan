@@ -57,6 +57,17 @@ export const onAddItemToList = (page, id, item) => (dispatch) => {
   });
 };
 
+export const onEditItemInList = (page, id, item) => (dispatch) => {
+  dispatch({
+    type: 'ON_EDIT_ITEM_IN_LIST',
+    payload: {
+      page,
+      id,
+      item,
+    },
+  });
+};
+
 export const onRemoveItemFromList = (page, id, item) => (dispatch) => {
   dispatch({
     type: 'ON_REMOVE_ITEM_FROM_LIST',
