@@ -6,6 +6,7 @@ import {
   onAddItemToList,
   onRemoveItemFromList,
 } from '../../actions';
+
 import Text from '../text';
 
 import './checkbox.css';
@@ -13,10 +14,10 @@ import './checkbox.css';
 const Checkbox = props => (
   <span
     className={`
-      ${props.size}-checkbox
+      checkbox
+      ${props.size}
     `}
   >
-      {console.log('props checkbox', props)}
     <button
       className="check-icon"
       onClick={() => (

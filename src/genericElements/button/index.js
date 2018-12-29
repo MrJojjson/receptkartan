@@ -8,7 +8,8 @@ import './button.css';
 const Button = props => (
   <button
     className={`
-      ${props.size}-button
+      button
+      ${props.size}
       ${props.border ? 'border' : ''}
     `}
     onClick={() => props.onButtonClick()}

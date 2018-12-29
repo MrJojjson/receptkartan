@@ -179,7 +179,8 @@ const renderInput = props => (
   <input
     id={`${props.page}-${props.id}`}
     className={`
-      ${props.size}-dropdown
+      dropdown
+      ${props.size}
     `}
     placeholder={props.placeholder}
     value={props.multiOptions ? inputSplitValue(props).join(' ') : inputValue(props)}

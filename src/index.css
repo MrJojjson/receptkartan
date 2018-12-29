@@ -28,6 +28,60 @@ input[type=number]::-webkit-outer-spin-button {
   outline: red;
 }
 
-focus {
-  outline: red;
+.x-large {
+  min-width: 200px;
 }
+
+.large {
+  min-width: 150px;
+}
+
+.medium {
+  min-width: 100px;
+}
+
+.small {
+  min-width: 75px;
+}
+
+.floating {
+  font-size: 10px;
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+
+} 
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+
+} 
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .x-large {
+    min-width: 275px;
+  }
+  
+  .large {
+    min-width: 200px;
+  }
+  
+  .medium {
+    min-width: 150px;
+  }
+  
+  .small {
+    min-width: 125px;
+  }
+  
+  .floating {
+    font-size: 10px;
+  }
+} 

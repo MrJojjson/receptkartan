@@ -19,12 +19,10 @@ const onEditButtonClick = props => [
 const Badge = props => (
   <span
     className={`
-      ${props.size}-badge
+      badge
+      ${props.size}
     `}
   >
-    <Text
-      title={props.title || props.item.value}
-    />
     {props.editable
       ? <button
       className="edit-icon"
@@ -34,6 +32,10 @@ const Badge = props => (
     </button>
       : null
     }
+    <Text
+      title={props.title || props.item.value}
+      className="badge-text"
+    />
     <button
       className="remove-icon"
       onClick={() => props.onRemoveItemFromList(props.page, props.id, props.item)}

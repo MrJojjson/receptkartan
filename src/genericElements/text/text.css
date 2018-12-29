@@ -1,32 +1,10 @@
-.x-large-text, .large-text, .medium-text, .small-text, .floating-text, .auto-text {
+.text {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  color: #4a4a4a;
-  padding: 5px;
   opacity: 1;
   transition: all 0.5s;
-}
-
-.x-large-text {
-  font-size: 20px;
-}
-
-.large-text {
-  font-size: 16px;
-}
-
-.medium-text {
-  font-size: 14px;
-}
-
-.small-text {
-  font-size: 12px;
-}
-
-.floating-text {
-  font-size: 10px;
 }
 
 .floating-placeholder {

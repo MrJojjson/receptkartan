@@ -9,8 +9,10 @@ const Text = ({
   type,
   active,
 }) => (
-  <div className={`
-      ${size}-text
+  <div
+    className={`
+      text
+      ${size}
       ${type}
       ${active && 'active'}
     `}

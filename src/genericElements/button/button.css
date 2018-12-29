@@ -1,4 +1,4 @@
-.x-large-button, .large-button, .medium-button, .small-button, .auto-button, .icon-button {
+.button {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,34 +16,13 @@
   transition: all 0.5s;
 }
 
-.x-large-button {
-  min-width: 200px;
-}
-
-.large-button {
-  min-width: 150px;
-}
-
-.medium-button {
-  min-width: 100px;
-}
-
-.small-button {
-  min-width: 75px;
-}
-
-.auto-button {
-  max-width: auto;
-  min-width: auto;
-}
-
 .icon-button {
   max-width: auto;
   min-width: auto;
   border-radius: 50px;
 }
 
-.x-large-button:hover , .large-button:hover , .medium-button:hover , .small-button:hover , .auto-button:hover, .icon-button:hover {
+.button:hover {
   background: transparent;
   color: #16a085;
   opacity: 0.75;

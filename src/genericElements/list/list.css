@@ -2,9 +2,14 @@
   width: 100%;
   flex-direction: row;
   flex-wrap: wrap;
-  padding: 15px;
 }
 
 .list li {
   display: flex;
+}
+
+@media only screen and (max-width: 600px) {
+  .list li {
+    flex-grow: 1;
+  }
 }

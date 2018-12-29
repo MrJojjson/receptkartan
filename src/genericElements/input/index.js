@@ -36,7 +36,8 @@ const Input = props => (
   <div className="input-container">
     <input
       className={`
-        ${props.size}-input
+        input
+        ${props.size}
       `}
       type={props.digits ? 'number' : 'text'}
       placeholder={props.placeholder}

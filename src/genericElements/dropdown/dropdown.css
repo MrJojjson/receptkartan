@@ -129,7 +129,7 @@
   transition: all 0.5s;
 }
 
-.x-large-dropdown, .large-dropdown, .medium-dropdown, .small-dropdown{
+.dropdown {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -143,29 +143,13 @@
   opacity: 1;
 }
 
-.x-large-dropdown {
-  min-width: 200px;
-}
-
-.large-dropdown {
-  min-width: 150px;
-}
-
-.medium-dropdown {
-  min-width: 100px;
-}
-
-.small-dropdown {
-  min-width: 75px;
-}
-
-.x-large-dropdown:hover, .large-dropdown:hover, .medium-dropdown:hover, .small-dropdown:hover {
+.dropdown:hover {
   border-bottom: 2px solid #16a085;
   opacity: 0.75;
   transition: all 0.5s;
 }
 
-.x-large-dropdown:focus, .large-dropdown:focus, .medium-dropdown:focus, .small-dropdown:focus {
+.dropdown:focus {
   border-bottom: 2px solid #16a085;
   opacity: 1;
   transition: all 0.5s;

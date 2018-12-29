@@ -28,7 +28,7 @@
   transition: all 0.5s;
 }
 
-.x-large-input, .large-input, .medium-input, .small-input{
+.input{
   display: flex;
   justify-content: center;
   align-items: center;
@@ -43,29 +43,13 @@
   opacity: 1;
 }
 
-.x-large-input {
-  min-width: 200px;
-}
-
-.large-input {
-  min-width: 150px;
-}
-
-.medium-input {
-  min-width: 100px;
-}
-
-.small-input {
-  min-width: 75px;
-}
-
-.x-large-input:hover, .large-input:hover, .medium-input:hover, .small-input:hover {
+.input:hover {
   border-bottom: 2px solid #16a085;
   opacity: 0.75;
   transition: all 0.5s;
 }
 
-.x-large-input:focus, .large-input:focus, .medium-input:focus, .small-input:focus {
+.input:focus {
   border-bottom: 2px solid #16a085;
   opacity: 1;
   transition: all 0.5s;
